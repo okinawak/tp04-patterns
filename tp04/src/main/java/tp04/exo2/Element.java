@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -72,6 +73,26 @@ public class Element extends Node{
 
     @Override
     public String toXML() {
-        throw new UnsupportedOperationException("à écrire");       
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<").append(this.tag);
+
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            builder.append(" ")
+                   .append(entry.getKey())
+                   .append("=\"")
+                   .append(XMLHelper.protectAttributeValue(entry.getValue()))
+                   .append("\"");
+        }
+        
+        builder.append(">");
+
+        for (Node child : this.children) {
+            builder.append(child.toXML());
+        }
+
+        builder.append("</").append(this.tag).append(">");
+
+        return builder.toString();
     }
 }
