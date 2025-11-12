@@ -71,3 +71,18 @@ Note : les attributs seront listés par ordre alphabétique de nom d'attribut (p
 Petite remarque sur le XML produit : dans les tests, nous avons négligé le problème des balises vides comme 
 `img`. En théorie, les notations `<img src="toto.png"/>` et `<img src="toto.png"></img>` ne sont pas équivalentes. On pourrait complexifier un peu l'arbre d'héritage pour prendre cela en compte.
 
+Réponse à la question 2 de l'exercice 2:
+Pattern Décorateur
+
+Le Décorateur a permis d'ajouter des fonctionnalités (ex: UpperCase, Grep) à Sequence sans modifier le code existant, respectant ainsi le principe Ouvert/Fermé.
+    Bénéfices : Composition dynamique (empilement des décorateurs) et responsabilité unique pour chaque fonctionnalité.
+
+    Problèmes évités : L'explosion de classes due à l'héritage (ex: UpperCaseGrepArraySequence) et la maintenance complexe des sous-classes.
+
+Pattern Composite
+
+Le Composite a permis de créer une structure en arbre (XML) en traitant uniformément les conteneurs (Element) et les feuilles (TextNode) grâce à l'interface commune Node.
+
+    Bénéfices : Simplification radicale des opérations récursives (ex: toXML()) en éliminant la logique conditionnelle (pas de if instanceof). Le client n'interagit qu'avec la racine.
+
+    Problèmes évités : Code complexe dans les conteneurs et maintenance difficile lors de l'ajout de nouveaux types de nœuds.
